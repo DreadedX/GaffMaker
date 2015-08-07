@@ -7,7 +7,8 @@
 #include <cstring>
 
 // Other library includes
-#include "png.h"
+#include <png.h>
+#include <zlib.h>
 
 // Project includes
 #include "Definitions.h"

@@ -10,7 +10,7 @@ CXX = g++
 COMPILE_FLAGS_EXTRA = -Wno-write-strings -Wno-unused-parameter -g
 
 # Libraries
-LIBS_EXTERN = libpng 
+LIBS_EXTERN = libpng zlib
 #### END PROJECT SETTINGS ####
 #
 #
@@ -51,8 +51,11 @@ $(OBJECTS_LIBS) : libs/obj/%.o : libs/src/%.cpp ./Makefile
 include/Standard.h.gch: $(HEADERS) $(HEADERS_LIBS) ./Makefile
 	$(CXX) $(COMPILE_FLAGS) $(INCLUDES) include/Standard.h 
 
-execute:
+run:
 	cd sandbox; ./../$(NAME)
+
+debug:
+	gcd sandbox; db ../$(NAME) -ex run -ex bt -ex quit --silent
 
 clean:
 	rm -f build/debug/$(PROGRAM_NAME)

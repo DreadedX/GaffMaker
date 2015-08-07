@@ -55,7 +55,7 @@ run:
 	cd sandbox; ./../$(NAME)
 
 debug:
-	gcd sandbox; db ../$(NAME) -ex run -ex bt -ex quit --silent
+	cd sandbox; gdb ../$(NAME) -ex run -ex bt -ex quit --silent
 
 clean:
 	rm -f build/debug/$(PROGRAM_NAME)

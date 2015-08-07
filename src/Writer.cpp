@@ -59,22 +59,27 @@ int main() {
     // Add entities
     addImage("in/player.png", "entity/player", TYPE_ENTITY);
 
+    // Add background
+    addImage("in/background/mountain/2.png", "background/mountain_2", TYPE_UNDEF);
+    addImage("in/background/mountain/3.png", "background/mountain_3", TYPE_UNDEF);
+    addImage("in/background/mountain/4.png", "background/mountain_4", TYPE_UNDEF);
+
     // Add font
-    addImage("in/font.png", "font", 0x00);
+    addImage("in/font.png", "font", TYPE_UNDEF);
 
     byte *level = 0x00;
-    addLevel("in/level.dat", "level", 0x00, level, imageSize(64, 48));
+    addLevel("in/level.dat", "level", TYPE_UNDEF, level, imageSize(64, 48));
     byte *level0 = 0x00;
-    addLevel("in/level0.dat", "level0", 0x00, level0, imageSize(64, 48));
+    addLevel("in/level0.dat", "level0", TYPE_UNDEF, level0, imageSize(64, 48));
 
     byte *tile_vertex = 0x00;
-    addFile("in/shaders/tile.vsh", "shaders/tile_vertex", 0x00, tile_vertex);
+    addFile("in/shaders/tile.vsh", "shaders/tile_vertex", TYPE_UNDEF, tile_vertex);
     byte *tile_fragment = 0x00;
-    addFile("in/shaders/tile.fsh", "shaders/tile_fragment", 0x00, tile_fragment);
+    addFile("in/shaders/tile.fsh", "shaders/tile_fragment", TYPE_UNDEF, tile_fragment);
     byte *font_vertex = 0x00;
-    addFile("in/shaders/font.vsh", "shaders/font_vertex", 0x00, font_vertex);
+    addFile("in/shaders/font.vsh", "shaders/font_vertex", TYPE_UNDEF, font_vertex);
     byte *font_fragment = 0x00;
-    addFile("in/shaders/font.fsh", "shaders/font_fragment", 0x00, font_fragment);
+    addFile("in/shaders/font.fsh", "shaders/font_fragment", TYPE_UNDEF, font_fragment);
 
     byteShort fileCount;
     fileCount.s = counter;

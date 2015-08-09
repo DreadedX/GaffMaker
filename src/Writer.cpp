@@ -3,7 +3,7 @@
 using namespace std;
 
 struct fileAll {
-    Gaff::fileInfo info;
+    FileInfo info;
     byte *data;
 };
 
@@ -20,57 +20,73 @@ int imageSize(int width, int height);
 int main() {
     
     // Add tiles
-    addImage("in/tile/void.png", "tile/void", TYPE_TILE | TYPE_SOLID);
+    // 0
+    addImage("in/tile/unknown.png", "tile/unknown", TYPE_TILE);
+    // 1
     addImage("in/tile/grid.png", "tile/grid", TYPE_TILE);
 
-    addImage("in/tile/block.png", "tile/block", TYPE_TILE | TYPE_SOLID);
-    addImage("in/tile/pillar.png", "tile/pillar", TYPE_TILE | TYPE_SOLID);
+    // 2
+    addImage("in/tile/dungeon/floor_clean.png", "tile/dungeon/floor", TYPE_TILE);
+    // 3
+    addImage("in/tile/dungeon/floor_edge_bottom_center.png", "tile/dungeon/floor_edge_bottom", TYPE_TILE);
 
-    addImage("in/tile/brickDark.png", "tile/brickDark", TYPE_TILE | TYPE_SOLID);
-    addImage("in/tile/brickLight.png", "tile/brickLight", TYPE_TILE | TYPE_SOLID);
+    // 4
+    addImage("in/tile/dungeon/stair_left.png", "tile/dungeon/stair_left", TYPE_TILE);
+    // 5 
+    addImage("in/tile/dungeon/stair_right.png", "tile/dungeon/stair_right", TYPE_TILE);
 
-    addImage("in/tile/flag00.png", "tile/flag00", TYPE_TILE);
-    addImage("in/tile/flag01.png", "tile/flag01", TYPE_TILE);
-    addImage("in/tile/flag02.png", "tile/flag02", TYPE_TILE);
-    addImage("in/tile/flag03.png", "tile/flag03", TYPE_TILE);
-    addImage("in/tile/flag04.png", "tile/flag04", TYPE_TILE);
-    addImage("in/tile/flag05.png", "tile/flag05", TYPE_TILE);
-    addImage("in/tile/flag06.png", "tile/flag06", TYPE_TILE);
-    addImage("in/tile/flag07.png", "tile/flag07", TYPE_TILE);
-    addImage("in/tile/flag08.png", "tile/flag08", TYPE_TILE);
-    addImage("in/tile/flag09.png", "tile/flag09", TYPE_TILE);
-    addImage("in/tile/flag10.png", "tile/flag10", TYPE_TILE);
-    addImage("in/tile/flag11.png", "tile/flag11", TYPE_TILE);
-    addImage("in/tile/flag12.png", "tile/flag12", TYPE_TILE);
+    // 6
+    addImage("in/tile/dungeon/wall_bottom_left.png", "tile/dungeon/wall_bottom_left", TYPE_TILE | TYPE_SOLID);
+    // 7
+    addImage("in/tile/dungeon/wall_bottom_right.png", "tile/dungeon/wall_bottom_right", TYPE_TILE | TYPE_SOLID);
 
-    addImage("in/tile/window00.png", "tile/window00", TYPE_TILE);
-    addImage("in/tile/window01.png", "tile/window01", TYPE_TILE);
-    addImage("in/tile/window02.png", "tile/window02", TYPE_TILE);
-    addImage("in/tile/window03.png", "tile/window03", TYPE_TILE);
-    addImage("in/tile/window04.png", "tile/window04", TYPE_TILE);
-    addImage("in/tile/window05.png", "tile/window05", TYPE_TILE);
-    addImage("in/tile/window06.png", "tile/window06", TYPE_TILE);
-    addImage("in/tile/window07.png", "tile/window07", TYPE_TILE);
-    addImage("in/tile/window08.png", "tile/window08", TYPE_TILE);
-    addImage("in/tile/window09.png", "tile/window09", TYPE_TILE);
-    addImage("in/tile/window10.png", "tile/window10", TYPE_TILE);
-    addImage("in/tile/window11.png", "tile/window11", TYPE_TILE);
+    // 8
+    addImage("in/tile/dungeon/wall_top_left.png", "tile/dungeon/wall_top_left", TYPE_TILE | TYPE_SOLID);
+    // 9
+    addImage("in/tile/dungeon/wall_top_right.png", "tile/dungeon/wall_top_right", TYPE_TILE | TYPE_SOLID);
+
+    // 10
+    addImage("in/tile/dungeon/wall_horizontal.png", "tile/dungeon/wall_horizontal", TYPE_TILE | TYPE_SOLID);
+    // 11
+    addImage("in/tile/dungeon/wall_vertical.png", "tile/dungeon/wall_vertical", TYPE_TILE | TYPE_SOLID);
+
+    // 12
+    addImage("in/tile/dungeon/wall_side.png", "tile/dungeon/wall_side", TYPE_TILE | TYPE_SOLID);
 
     // Add entities
     addImage("in/player.png", "entity/player", TYPE_ENTITY);
 
     // Add background
+    addImage("in/background/mountain/0.png", "background/mountain_0", TYPE_UNDEF);
+    addImage("in/background/mountain/1.png", "background/mountain_1", TYPE_UNDEF);
     addImage("in/background/mountain/2.png", "background/mountain_2", TYPE_UNDEF);
     addImage("in/background/mountain/3.png", "background/mountain_3", TYPE_UNDEF);
     addImage("in/background/mountain/4.png", "background/mountain_4", TYPE_UNDEF);
+    addImage("in/background/mountain/5.png", "background/mountain_5", TYPE_UNDEF);
+    addImage("in/background/mountain/floor.png", "background/mountain_floor", TYPE_UNDEF);
 
     // Add font
     addImage("in/font.png", "font", TYPE_UNDEF);
 
-    byte *level = 0x00;
-    addLevel("in/level.dat", "level", TYPE_UNDEF, level, imageSize(64, 48));
-    byte *level0 = 0x00;
-    addLevel("in/level0.dat", "level0", TYPE_UNDEF, level0, imageSize(64, 48));
+    byte level[16*16] = {
+	8, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 9,
+	11, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 11,
+	11, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 11,
+	11, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 11,
+	11, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 11,
+	11, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 11,
+	11, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 11,
+	11, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 11,
+	11, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 11,
+	11, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 11,
+	11, 3, 3, 3, 3, 3, 3, 2, 2, 3, 3, 3, 3, 3, 3, 11,
+	11, 12, 12, 12, 12, 12, 12, 4, 5, 12, 12, 12, 12, 12, 12, 11,
+	11, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 11,
+	11, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 11,
+	6, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 7,
+	12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12
+    };
+    makeFile("level", TYPE_UNDEF, imageSize(16, 16), 16*16, level);
 
     byte *tile_vertex = 0x00;
     addFile("in/shaders/tile.vsh", "shaders/tile_vertex", TYPE_UNDEF, tile_vertex);
@@ -86,8 +102,8 @@ int main() {
 
     ofstream file ("out.gaff", ios::out | ios::binary);
     if (file.is_open()) {
-	file << Gaff::MAGIC[0] << Gaff::MAGIC[1] << Gaff::MAGIC[2] << Gaff::MAGIC[3];
-	file << Gaff::VERSION;
+	file << MAGIC[0] << MAGIC[1] << MAGIC[2] << MAGIC[3];
+	file << VERSION;
 	for(int i = 0; i < 2; i++) {file << fileCount.b[i];}
     }
 
@@ -152,18 +168,6 @@ void addImage(char *imageName, string name, byte type) {
 
     image image = loadPNG(imageName);
     makeFile(name, type, imageSize(image.width, image.height), image.size, image.data);
-}
-
-// TODO; This is temporary, as there will be an new level format
-void addLevel(char *fileName, string name, byte type, byte *data, int widthHeight) {
-    ifstream file(fileName, ios::in | ios::binary);
-    file.seekg(0, ios::end);
-    uint size = file.tellg();
-    file.seekg(0, ios::beg);
-    data = new byte[size];
-    file.read(reinterpret_cast<char*>(data), size);
-
-    makeFile(name, type, widthHeight, size, data);
 }
 
 void addFile(char *fileName, string name, byte type, byte *data) {

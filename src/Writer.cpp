@@ -28,7 +28,7 @@ int main() {
     // 2
     addImage("in/tile/dungeon/floor_clean.png", "tile/dungeon/floor", TYPE_TILE);
     // 3
-    addImage("in/tile/dungeon/floor_edge_bottom_center.png", "tile/dungeon/floor_edge_bottom", TYPE_TILE);
+    addImage("in/tile/dungeon/filled.png", "tile/dungeon/filled", TYPE_TILE | TYPE_SOLID);
 
     // 4
     addImage("in/tile/dungeon/stair_left.png", "tile/dungeon/stair_left", TYPE_TILE);
@@ -39,63 +39,108 @@ int main() {
     addImage("in/tile/dungeon/wall_bottom_left.png", "tile/dungeon/wall_bottom_left", TYPE_TILE | TYPE_SOLID);
     // 7
     addImage("in/tile/dungeon/wall_bottom_right.png", "tile/dungeon/wall_bottom_right", TYPE_TILE | TYPE_SOLID);
-
     // 8
-    addImage("in/tile/dungeon/wall_top_left.png", "tile/dungeon/wall_top_left", TYPE_TILE | TYPE_SOLID);
-    // 9
-    addImage("in/tile/dungeon/wall_top_right.png", "tile/dungeon/wall_top_right", TYPE_TILE | TYPE_SOLID);
+    addImage("in/tile/dungeon/wall_bottom_center.png", "tile/dungeon/wall_bottom_center", TYPE_TILE | TYPE_SOLID);
 
+    // 9
+    addImage("in/tile/dungeon/wall_top_left.png", "tile/dungeon/wall_top_left", TYPE_TILE | TYPE_SOLID);
     // 10
-    addImage("in/tile/dungeon/wall_horizontal.png", "tile/dungeon/wall_horizontal", TYPE_TILE | TYPE_SOLID);
+    addImage("in/tile/dungeon/wall_top_right.png", "tile/dungeon/wall_top_right", TYPE_TILE | TYPE_SOLID);
     // 11
-    addImage("in/tile/dungeon/wall_vertical.png", "tile/dungeon/wall_vertical", TYPE_TILE | TYPE_SOLID);
+    addImage("in/tile/dungeon/wall_top_center.png", "tile/dungeon/wall_top_center", TYPE_TILE | TYPE_SOLID);
 
     // 12
+    addImage("in/tile/dungeon/wall_left_center.png", "tile/dungeon/wall_left_center", TYPE_TILE | TYPE_SOLID);
+    // 13
+    addImage("in/tile/dungeon/wall_right_center.png", "tile/dungeon/wall_right_center", TYPE_TILE | TYPE_SOLID);
+
+    // 14
     addImage("in/tile/dungeon/wall_side.png", "tile/dungeon/wall_side", TYPE_TILE | TYPE_SOLID);
 
-    // Add entities
-    addImage("in/player.png", "entity/player", TYPE_ENTITY);
+    // 15
+    addImage("in/tile/dungeon/wall_bottom_left_inner.png", "tile/dungeon/wall_bottom_left_inner", TYPE_TILE | TYPE_SOLID);
+    // 16
+    addImage("in/tile/dungeon/wall_bottom_right_inner.png", "tile/dungeon/wall_bottom_right_inner", TYPE_TILE | TYPE_SOLID);
+    // 17
+    addImage("in/tile/dungeon/wall_top_left_inner.png", "tile/dungeon/wall_top_left_inner", TYPE_TILE | TYPE_SOLID);
+    // 18
+    addImage("in/tile/dungeon/wall_top_right_inner.png", "tile/dungeon/wall_top_right_inner", TYPE_TILE | TYPE_SOLID);
 
-    // Add background
-    addImage("in/background/mountain/0.png", "background/mountain_0", TYPE_UNDEF);
-    addImage("in/background/mountain/1.png", "background/mountain_1", TYPE_UNDEF);
-    addImage("in/background/mountain/2.png", "background/mountain_2", TYPE_UNDEF);
-    addImage("in/background/mountain/3.png", "background/mountain_3", TYPE_UNDEF);
-    addImage("in/background/mountain/4.png", "background/mountain_4", TYPE_UNDEF);
-    addImage("in/background/mountain/5.png", "background/mountain_5", TYPE_UNDEF);
-    addImage("in/background/mountain/floor.png", "background/mountain_floor", TYPE_UNDEF);
+    // addImage("in/maze/NONE.png", "maze/none", TYPE_TILE);
+    //
+    // addImage("in/maze/N.png", "maze/n", TYPE_TILE);
+    // addImage("in/maze/E.png", "maze/e", TYPE_TILE);
+    // addImage("in/maze/S.png", "maze/s", TYPE_TILE);
+    // addImage("in/maze/W.png", "maze/w", TYPE_TILE);
+    //
+    // addImage("in/maze/NE.png", "maze/ne", TYPE_TILE);
+    // addImage("in/maze/NS.png", "maze/ns", TYPE_TILE);
+    // addImage("in/maze/NW.png", "maze/nw", TYPE_TILE);
+    //
+    // addImage("in/maze/ES.png", "maze/es", TYPE_TILE);
+    // addImage("in/maze/EW.png", "maze/ew", TYPE_TILE);
+    //
+    // addImage("in/maze/SW.png", "maze/sw", TYPE_TILE);
+    //
+    // addImage("in/maze/NES.png", "maze/nes", TYPE_TILE);
+    // addImage("in/maze/NEW.png", "maze/new", TYPE_TILE);
+    // addImage("in/maze/NSW.png", "maze/nsw", TYPE_TILE);
+    // addImage("in/maze/ESW.png", "maze/ews", TYPE_TILE);
+    //
+    // addImage("in/maze/NESW.png", "maze/nesw", TYPE_TILE);
+
+    // Add entities
+    addImage("in/entity/player/class/mage.png", "entity/player/class/mage", TYPE_ENTITY);
+    addImage("in/entity/enemy.png", "entity/enemy", TYPE_ENTITY);
 
     // Add font
-    addImage("in/font.png", "font", TYPE_UNDEF);
+    // addImage("in/font.png", "font", TYPE_UNDEF);
 
-    byte level[16*16] = {
-	8, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 9,
-	11, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 11,
-	11, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 11,
-	11, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 11,
-	11, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 11,
-	11, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 11,
-	11, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 11,
-	11, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 11,
-	11, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 11,
-	11, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 11,
-	11, 3, 3, 3, 3, 3, 3, 2, 2, 3, 3, 3, 3, 3, 3, 11,
-	11, 12, 12, 12, 12, 12, 12, 4, 5, 12, 12, 12, 12, 12, 12, 11,
-	11, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 11,
-	11, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 11,
-	6, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 7,
-	12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12
-    };
-    makeFile("level", TYPE_UNDEF, imageSize(16, 16), 16*16, level);
+    // NOTE: Level is upside down
+    // byte room_test[16*16] = {
+	// // 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
+	// tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallSide, 
+	// // 6, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 7,
+	// tileWallBottomLeft, tileWallHorizontal, tileWallHorizontal, tileWallHorizontal, tileWallHorizontal, tileWallHorizontal, tileWallHorizontal, tileWallHorizontal, tileWallHorizontal, tileWallHorizontal, tileWallHorizontal, tileWallHorizontal, tileWallHorizontal, tileWallHorizontal, tileWallHorizontal, tileWallBottomRight,
+	// // 11, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 11,
+	// tileWallVertical, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileWallVertical,
+	// // 11, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 11,
+	// tileWallVertical, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileWallVertical,
+	// // 11, 12, 12, 12, 12, 12, 12, 4, 5, 12, 12, 12, 12, 12, 12, 11,
+	// tileWallVertical, tileWallSide, tileWallSide, tileStairLeft, tileStairRight, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallVertical,
+	// // 11, 3, 3, 3, 3, 3, 3, 2, 2, 3, 3, 3, 3, 3, 3, 11,
+	// tileWallVertical, tileFloorEdgeBottom, tileFloorEdgeBottom, tileFloor, tileFloor, tileFloorEdgeBottom, tileFloorEdgeBottom, tileFloorEdgeBottom, tileFloorEdgeBottom, tileFloorEdgeBottom, tileFloorEdgeBottom, tileFloorEdgeBottom, tileFloorEdgeBottom, tileFloorEdgeBottom, tileFloorEdgeBottom, tileWallVertical,
+	// // 11, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 11,
+	// tileWallVertical, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileWallVertical,
+	// // 11, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 11,
+	// tileWallVertical, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileWallVertical,
+	// // 11, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 11,
+	// tileWallVertical, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileWallVertical,
+	// // 11, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 11,
+	// tileWallVertical, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileWallVertical,
+	// // 11, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 11,
+	// tileWallVertical, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileWallVertical,
+	// // 11, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 11,
+	// tileWallVertical, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileWallVertical,
+	// // 11, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 11,
+	// tileWallVertical, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileWallVertical,
+	// // 11, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 11,
+	// tileWallVertical, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileWallVertical,
+	// // 11, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 11,
+	// tileWallVertical, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallVertical,
+	// // 8, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 9
+	// tileWallTopLeft, tileWallHorizontal, tileWallHorizontal, tileWallHorizontal, tileWallHorizontal, tileWallHorizontal, tileWallHorizontal, tileWallHorizontal, tileWallHorizontal, tileWallHorizontal, tileWallHorizontal, tileWallHorizontal, tileWallHorizontal, tileWallHorizontal, tileWallHorizontal, tileWallTopRight
+    // };
+    // makeFile("room_16x16_test", TYPE_UNDEF, imageSize(16, 16), 16*16, room_test);
 
     byte *tile_vertex = 0x00;
-    addFile("in/shaders/tile.vsh", "shaders/tile_vertex", TYPE_UNDEF, tile_vertex);
+    addFile("in/shaders/tile.vsh", "shaders/tile_vert", TYPE_UNDEF, tile_vertex);
     byte *tile_fragment = 0x00;
-    addFile("in/shaders/tile.fsh", "shaders/tile_fragment", TYPE_UNDEF, tile_fragment);
+    addFile("in/shaders/tile.fsh", "shaders/tile_frag", TYPE_UNDEF, tile_fragment);
     byte *font_vertex = 0x00;
-    addFile("in/shaders/font.vsh", "shaders/font_vertex", TYPE_UNDEF, font_vertex);
+    addFile("in/shaders/entity.vsh", "shaders/entity_vert", TYPE_UNDEF, font_vertex);
     byte *font_fragment = 0x00;
-    addFile("in/shaders/font.fsh", "shaders/font_fragment", TYPE_UNDEF, font_fragment);
+    addFile("in/shaders/entity.fsh", "shaders/entity_frag", TYPE_UNDEF, font_fragment);
 
     byteShort fileCount;
     fileCount.s = counter;

@@ -10,7 +10,7 @@ CXX = g++
 COMPILE_FLAGS_EXTRA = -Wno-write-strings -Wno-unused-parameter -g
 
 # Libraries
-LIBS_EXTERN = libpng zlib
+LIBS_EXTERN = libpng16 zlib
 #### END PROJECT SETTINGS ####
 #
 #

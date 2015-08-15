@@ -8,8 +8,7 @@ out vec2 UV;
 uniform mat4 mvpMatrix;
 
 void main() {
-    vec4 v = vec4(vertexPosition_modelspace, 1);
-    gl_Position = mvpMatrix * v;
+    gl_Position = mvpMatrix * vec4(vertexPosition_modelspace, 1);
 
     UV = vertexUV;
 }

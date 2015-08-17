@@ -18,129 +18,39 @@ void addImage(char *fileName, string name, byte type);
 int imageSize(int width, int height);
 
 int main() {
-    
-    // Add tiles
-    // 0
-    addImage("in/tile/unknown.png", "tile/unknown", TYPE_TILE);
-    // 1
-    addImage("in/tile/grid.png", "tile/grid", TYPE_TILE);
 
-    // 2
-    addImage("in/tile/dungeon/floor_clean.png", "tile/dungeon/floor", TYPE_TILE);
-    // 3
-    addImage("in/tile/dungeon/filled.png", "tile/dungeon/filled", TYPE_TILE | TYPE_SOLID);
+    FILE* pFile = fopen("files.json", "rb");
+    char buffer[65536];
+    rapidjson::FileReadStream is(pFile, buffer, sizeof(buffer));
+    rapidjson::Document d;
+    d.ParseStream<0, rapidjson::UTF8<>, rapidjson::FileReadStream>(is);
 
-    // 4
-    addImage("in/tile/dungeon/stair_left.png", "tile/dungeon/stair_left", TYPE_TILE);
-    // 5 
-    addImage("in/tile/dungeon/stair_right.png", "tile/dungeon/stair_right", TYPE_TILE);
+    rapidjson::Value &fileInfo = d["data"];
 
-    // 6
-    addImage("in/tile/dungeon/wall_bottom_left.png", "tile/dungeon/wall_bottom_left", TYPE_TILE | TYPE_SOLID);
-    // 7
-    addImage("in/tile/dungeon/wall_bottom_right.png", "tile/dungeon/wall_bottom_right", TYPE_TILE | TYPE_SOLID);
-    // 8
-    addImage("in/tile/dungeon/wall_bottom_center.png", "tile/dungeon/wall_bottom_center", TYPE_TILE | TYPE_SOLID);
+    for (rapidjson::SizeType i = 0; i < fileInfo.Size(); i++) {
 
-    // 9
-    addImage("in/tile/dungeon/wall_top_left.png", "tile/dungeon/wall_top_left", TYPE_TILE | TYPE_SOLID);
-    // 10
-    addImage("in/tile/dungeon/wall_top_right.png", "tile/dungeon/wall_top_right", TYPE_TILE | TYPE_SOLID);
-    // 11
-    addImage("in/tile/dungeon/wall_top_center.png", "tile/dungeon/wall_top_center", TYPE_TILE | TYPE_SOLID);
+	std::string name = "";
+	char *fileName;
+	static byte *data = nullptr;
 
-    // 12
-    addImage("in/tile/dungeon/wall_left_center.png", "tile/dungeon/wall_left_center", TYPE_TILE | TYPE_SOLID);
-    // 13
-    addImage("in/tile/dungeon/wall_right_center.png", "tile/dungeon/wall_right_center", TYPE_TILE | TYPE_SOLID);
+	cout << i << ": " << fileInfo[i][0].GetString() << " " << fileInfo[i][1].GetString() << endl;
 
-    // 14
-    addImage("in/tile/dungeon/wall_side.png", "tile/dungeon/wall_side", TYPE_TILE | TYPE_SOLID);
+	switch (fileInfo[i][3].GetInt()) {
+	    case 0:
+		name = fileInfo[i][1].GetString();
+		fileName = strdup(fileInfo[i][0].GetString());
 
-    // 15
-    addImage("in/tile/dungeon/wall_bottom_left_inner.png", "tile/dungeon/wall_bottom_left_inner", TYPE_TILE | TYPE_SOLID);
-    // 16
-    addImage("in/tile/dungeon/wall_bottom_right_inner.png", "tile/dungeon/wall_bottom_right_inner", TYPE_TILE | TYPE_SOLID);
-    // 17
-    addImage("in/tile/dungeon/wall_top_left_inner.png", "tile/dungeon/wall_top_left_inner", TYPE_TILE | TYPE_SOLID);
-    // 18
-    addImage("in/tile/dungeon/wall_top_right_inner.png", "tile/dungeon/wall_top_right_inner", TYPE_TILE | TYPE_SOLID);
+		addFile(fileName, name, fileInfo[i][2].GetInt(), data);
+		break;
 
-    // addImage("in/maze/NONE.png", "maze/none", TYPE_TILE);
-    //
-    // addImage("in/maze/N.png", "maze/n", TYPE_TILE);
-    // addImage("in/maze/E.png", "maze/e", TYPE_TILE);
-    // addImage("in/maze/S.png", "maze/s", TYPE_TILE);
-    // addImage("in/maze/W.png", "maze/w", TYPE_TILE);
-    //
-    // addImage("in/maze/NE.png", "maze/ne", TYPE_TILE);
-    // addImage("in/maze/NS.png", "maze/ns", TYPE_TILE);
-    // addImage("in/maze/NW.png", "maze/nw", TYPE_TILE);
-    //
-    // addImage("in/maze/ES.png", "maze/es", TYPE_TILE);
-    // addImage("in/maze/EW.png", "maze/ew", TYPE_TILE);
-    //
-    // addImage("in/maze/SW.png", "maze/sw", TYPE_TILE);
-    //
-    // addImage("in/maze/NES.png", "maze/nes", TYPE_TILE);
-    // addImage("in/maze/NEW.png", "maze/new", TYPE_TILE);
-    // addImage("in/maze/NSW.png", "maze/nsw", TYPE_TILE);
-    // addImage("in/maze/ESW.png", "maze/ews", TYPE_TILE);
-    //
-    // addImage("in/maze/NESW.png", "maze/nesw", TYPE_TILE);
+	    case 1:
+		name = fileInfo[i][1].GetString();
+		fileName = strdup(fileInfo[i][0].GetString());
 
-    // Add entities
-    addImage("in/entity/player/class/mage.png", "entity/player/class/mage", TYPE_ENTITY);
-    addImage("in/entity/enemy.png", "entity/enemy", TYPE_ENTITY);
-
-    // Add font
-    // addImage("in/font.png", "font", TYPE_UNDEF);
-
-    // NOTE: Level is upside down
-    // byte room_test[16*16] = {
-	// // 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
-	// tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallSide, 
-	// // 6, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 7,
-	// tileWallBottomLeft, tileWallHorizontal, tileWallHorizontal, tileWallHorizontal, tileWallHorizontal, tileWallHorizontal, tileWallHorizontal, tileWallHorizontal, tileWallHorizontal, tileWallHorizontal, tileWallHorizontal, tileWallHorizontal, tileWallHorizontal, tileWallHorizontal, tileWallHorizontal, tileWallBottomRight,
-	// // 11, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 11,
-	// tileWallVertical, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileWallVertical,
-	// // 11, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 11,
-	// tileWallVertical, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileWallVertical,
-	// // 11, 12, 12, 12, 12, 12, 12, 4, 5, 12, 12, 12, 12, 12, 12, 11,
-	// tileWallVertical, tileWallSide, tileWallSide, tileStairLeft, tileStairRight, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallVertical,
-	// // 11, 3, 3, 3, 3, 3, 3, 2, 2, 3, 3, 3, 3, 3, 3, 11,
-	// tileWallVertical, tileFloorEdgeBottom, tileFloorEdgeBottom, tileFloor, tileFloor, tileFloorEdgeBottom, tileFloorEdgeBottom, tileFloorEdgeBottom, tileFloorEdgeBottom, tileFloorEdgeBottom, tileFloorEdgeBottom, tileFloorEdgeBottom, tileFloorEdgeBottom, tileFloorEdgeBottom, tileFloorEdgeBottom, tileWallVertical,
-	// // 11, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 11,
-	// tileWallVertical, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileWallVertical,
-	// // 11, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 11,
-	// tileWallVertical, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileWallVertical,
-	// // 11, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 11,
-	// tileWallVertical, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileWallVertical,
-	// // 11, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 11,
-	// tileWallVertical, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileWallVertical,
-	// // 11, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 11,
-	// tileWallVertical, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileWallVertical,
-	// // 11, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 11,
-	// tileWallVertical, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileWallVertical,
-	// // 11, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 11,
-	// tileWallVertical, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileWallVertical,
-	// // 11, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 11,
-	// tileWallVertical, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileFloor, tileWallVertical,
-	// // 11, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 11,
-	// tileWallVertical, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallSide, tileWallVertical,
-	// // 8, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 9
-	// tileWallTopLeft, tileWallHorizontal, tileWallHorizontal, tileWallHorizontal, tileWallHorizontal, tileWallHorizontal, tileWallHorizontal, tileWallHorizontal, tileWallHorizontal, tileWallHorizontal, tileWallHorizontal, tileWallHorizontal, tileWallHorizontal, tileWallHorizontal, tileWallHorizontal, tileWallTopRight
-    // };
-    // makeFile("room_16x16_test", TYPE_UNDEF, imageSize(16, 16), 16*16, room_test);
-
-    byte *tile_vertex = 0x00;
-    addFile("in/shaders/tile.vsh", "shaders/tile_vert", TYPE_UNDEF, tile_vertex);
-    byte *tile_fragment = 0x00;
-    addFile("in/shaders/tile.fsh", "shaders/tile_frag", TYPE_UNDEF, tile_fragment);
-    byte *font_vertex = 0x00;
-    addFile("in/shaders/entity.vsh", "shaders/entity_vert", TYPE_UNDEF, font_vertex);
-    byte *font_fragment = 0x00;
-    addFile("in/shaders/entity.fsh", "shaders/entity_frag", TYPE_UNDEF, font_fragment);
+		addImage(fileName, name, fileInfo[i][2].GetInt());
+		break;
+	}
+    }
 
     byteShort fileCount;
     fileCount.s = counter;
@@ -220,7 +130,12 @@ void addFile(char *fileName, string name, byte type, byte *data) {
     file.seekg(0, ios::end);
     uint size = file.tellg();
     file.seekg(0, ios::beg);
-    data = new byte[size];
+    data = new(nothrow) byte[size];
+    if (!data) {
+
+	cout << "Could not allocate memory" << endl;
+	return;
+    }
     file.read(reinterpret_cast<char*>(data), size);
 
     makeFile(name, type, 0x00, size, data);
